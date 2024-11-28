@@ -5,9 +5,9 @@ cimport cython
 from libc.math cimport sqrt, sin, cos
 DEF pi = 3.141592653589793115997963468544185161590576171875
 
-from vector3 cimport Vector3, vec3_from_floats
-from vector4D cimport Vector4D, vec4_from_floats
-from matrix44 cimport Matrix44, Lorentz
+from go.vector3 cimport Vector3, vec3_from_floats
+from go.vector4D cimport Vector4D, vec4_from_floats
+from go.matrix44 cimport Matrix44, Lorentz
 
 
 cdef class Matrix44(object):

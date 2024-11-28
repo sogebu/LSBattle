@@ -4,8 +4,8 @@
 cimport cython
 from libc.math cimport sqrt
 
-from vector4D cimport Vector4D, vec4_from_floats
-from matrix44 cimport Matrix44, Lorentz
+from go.vector4D cimport Vector4D, vec4_from_floats
+from go.matrix44 cimport Matrix44, Lorentz
 
 
 cdef class PhaseSpace(object):
