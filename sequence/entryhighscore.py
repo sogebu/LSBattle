@@ -13,7 +13,6 @@ from sequence.showhighscore import ShowHighScore
 _max_score_num = 10
 _max_name_num = 8
 class EntryHighScore(object):
-    
     def __init__(self, score):
         self.new_score = score
         scores = []
@@ -31,31 +30,31 @@ class EntryHighScore(object):
         self.i = i
         self.scores = scores
         self.text = "Name: "
-        
+
     def init(self):
         if self.i == -1:
             self.menu = MenuItems(["Final Score: %i"%self.new_score], BOX.Y/10)
         else:
             self.menu = MenuItems([self.text+"".join(self.name)], BOX.Y/10,
                                   title="High Score!")
-        
+
     def save(self):
         if self.i > -1:
             f = open(CONFIG_DIR+"highscore.dat", "w")
             for s, n, d in self.scores:
                 f.write("%i %s %f\n"%(s, n, d))
             f.close()
-    
+
     def make_name(self, at=_max_name_num):
         name = "".join(self.name)
         return name[:at]
-        
+
     def mainloop(self):
         if self.i == -1:
             self.show()
         else:
             self.entry()
-            
+
     def entry(self):
         self.init()
         at = 0
@@ -103,11 +102,10 @@ class EntryHighScore(object):
             self.menu.draw(focus=(1.0, 0.0, 0.0, 1.0))
             sdl2.SDL_GL_SwapWindow(BOX.window)
             sdl2.SDL_Delay(10)
-    
+
     def show(self):
         self.init()
         while True:
-            
             for event in sdl2.ext.get_events():
                 if event.type == sdl2.SDL_QUIT:
                     BOX.game_quit()
@@ -122,5 +120,3 @@ class EntryHighScore(object):
             self.menu.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)
             sdl2.SDL_Delay(10)
-
-

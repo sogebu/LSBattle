@@ -1,16 +1,16 @@
 #coding: utf8
 import re
 
+
 class Block(object):
-            
     def __contains__(self, key):
         return key in self.__dict__
-    
+
     def __getitem__(self, key):
         return self.__dict__[key]
     def __setitem__(self, key, value):
         self.__dict__[key] = value
-    
+
     def _check(self):
         for name in dir(self):
             if not name.startswith("_"):
@@ -75,7 +75,7 @@ if __name__ == "__main__":
         def __init__(self):
             self.a = 1
             self._a_func = int
-    
+
     t = Test()
     t.b = 1
     print("a" in t)

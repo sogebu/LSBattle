@@ -10,7 +10,6 @@ from program.utils import load_texture, search_imagefile, compile_program
 
 
 class Material(object):
-
     def __init__(self, color, tex_name=None, texture=True, path=""):
         self.color = color
         if tex_name and texture:
@@ -26,8 +25,8 @@ class Material(object):
         if self.tex_name is not None:
             self.texture_id = load_texture(self.tex_name)
 
-class MqoGpoPolygon(object):
 
+class MqoGpoPolygon(object):
     def load_gpo(self, name, func=lambda x,y,z:(x,y,z), texture=True):
         igpo = open(name)
         if next(igpo).strip() != "Game Polygon Object":
@@ -50,16 +49,16 @@ class MqoGpoPolygon(object):
                 objects.append([Material(color, tex_name, texture, path), []])
             elif words[0] == "i":
                 objects[-1][1] = list(map(int, words[1:]))
-                
+
         self.vertices = (GLfloat*len(vertices))(*vertices)
         self.texcoords = (GLfloat*len(texcoords))(*texcoords)
-        
+
         self.objects = []
         for material, indices in objects:
             n = len(indices)
             obj = [material, n, (GLuint*n)(*indices)]
             self.objects.append(obj)
-    
+
     def set_texture(self, tex_name):
         def _set(self, i, name):
             if os.path.isfile(os.path.join(self.path, name)):
@@ -75,7 +74,7 @@ class MqoGpoPolygon(object):
                 _set(self, i, name)
         else:
             _set(self, 0, tex_name)
-            
+
     def make_gpo(self, name, ext=""):
         if ext.lower() in [".mqo", ".gpo"]:
             if os.path.isfile(name+ext):
@@ -172,7 +171,6 @@ void main() {
 """
 _polygon_cache = {}
 class Polygon(MqoGpoPolygon):
-
     def load_program_tex(self):
         self.program_tex = compile_program(
             vs_T%("""
@@ -189,7 +187,7 @@ class Polygon(MqoGpoPolygon):
         self.t_dX_local = glGetUniformLocation(self.program_tex, "dX")
         self.t_xp_local = glGetUniformLocation(self.program_tex, "xp")
         self.tex_local = glGetUniformLocation(self.program_tex, "texture")
-    
+
     def load_program_col(self):
         self.program_col = compile_program(
             vs_T%("gl_FrontColor = gl_Color * color;"),

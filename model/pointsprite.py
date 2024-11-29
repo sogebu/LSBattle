@@ -19,7 +19,7 @@ void main() {
     gl_Position = gl_ModelViewProjectionMatrix * vertex;
     %s;
     vec4 color = gl_Color;
-    %scolor.a = min(color.a, color.a/pow(r,2)*100);    
+    %scolor.a = min(color.a, color.a/pow(r,2)*100);
     gl_FrontColor = color;
 }
 """
@@ -63,8 +63,8 @@ class PointSprite(object):
             normalize_to_look = ""
         self.program_id = compile_program(
             _vshader%(size_type,
-                normalize_to_look, 
-                psize, 
+                normalize_to_look,
+                psize,
                 color_decay),
             _fshader)
         self.size_local = size_local_geter(self.program_id, "size")
@@ -232,8 +232,8 @@ class PointSpriteDoppler(object):
             normalize_to_look = ""
         self.program_id = compile_program(
             _vshader_doppler%(size_type,
-                normalize_to_look, 
-                psize, 
+                normalize_to_look,
+                psize,
                 color_decay),
             _fshader)
         self.size_local = size_local_geter(self.program_id, "size")
@@ -270,12 +270,14 @@ class PointSpriteDoppler(object):
             glUniform1f(self.size_local, size)
         glVertexPointer(3, GL_FLOAT, 0, self.vertices)
         glDrawArrays(GL_POINTS, 0, self.n)
+
     def _draw_0_1(self, vertices, sizes):
         glEnableVertexAttribArray(self.size_local)
         glVertexAttribPointer(self.size_local, 1, GL_FLOAT, GL_FALSE, 0, (GLfloat*self.n)(*sizes))
         glVertexPointer(3, GL_FLOAT, 0, self.vertices)
         glDrawArrays(GL_POINTS, 0, self.n)
         glDisableVertexAttribArray(self.size_local)
+
     def _draw_1_0(self, vertices, size):
         if size is None:
             glUniform1f(self.size_local, self.size)
@@ -284,6 +286,7 @@ class PointSpriteDoppler(object):
         n = len(vertices)
         glVertexPointer(3, GL_FLOAT, 0, (GLfloat*n)(*vertices))
         glDrawArrays(GL_POINTS, 0, n//3)
+
     def _draw_1_1(self, vertices, sizes):
         n = len(sizes)
         glEnableVertexAttribArray(self.size_local)
@@ -291,4 +294,3 @@ class PointSpriteDoppler(object):
         glVertexPointer(3, GL_FLOAT, 0, (GLfloat*(n*3))(*vertices))
         glDrawArrays(GL_POINTS, 0, n)
         glDisableVertexAttribArray(self.size_local)
-

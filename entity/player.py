@@ -26,7 +26,7 @@ class PlayerState(object):
 
     def reset_hp(self):
         self.hp = script.player.hp
-    
+
     def make_gun_icon(self):
         gun = script.player.guns[self.gun_mode]
         self.gun_info = script.player.gun_info.format%{
@@ -39,7 +39,7 @@ class PlayerState(object):
                 "RELOAD_TIME":gun.reload_time,
                 "ACTION":("Automatic" if gun.automatic else "Single")
             }
-    
+
     def gun_change(self):
         self.gun_mode = (self.gun_mode+1)%self.gun_num
         self.make_gun_icon()
@@ -49,6 +49,7 @@ class PlayerState(object):
             self.gun_num += 1
         self.gun_mode = self.gun_num - 1
         self.make_gun_icon()
+
 
 class Gun(object):
     def __init__(self, world, gun_data):
@@ -231,7 +232,7 @@ class Player(object):
         self.quaternion *= Quaternion.from_ax(self.turn_speed_2 * ds, matrix.right)
         self.turn_speed_1 -= self.turn_resistivity * self.turn_speed_1 * ds
         self.turn_speed_2 -= self.turn_resistivity * self.turn_speed_2 * ds
-    
+
     def get_viscous(self, keys):
         if self.level.is_hard():
             if keys.k_brake:
@@ -251,7 +252,7 @@ class Player(object):
                 return Vector4D(0, 0, 0, 0)
         else:
             return self.P.get_resist(self.resistivity*5.0)
-            
+
     def action(self, keys, ds):
         assert(self.i == id(self.P.X))
         self.change_direction(keys, ds)

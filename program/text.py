@@ -59,7 +59,7 @@ class MyFont(object):
         glTexCoord(tx+tw, ty-th); glVertex(x+w, y-h)
         glTexCoord(tx+tw, ty);    glVertex(x+w, y)
         glTexCoord(tx,    ty);    glVertex(x,   y)
-    
+
     @classmethod
     def draw3d(cls, c, x, y, z, w, h, dx1, dy1, dz1, dx2, dy2, dz2):
         tx, ty = cls.c_map[c-_OFFSET]
@@ -99,10 +99,11 @@ class Sentence(object):
         x = (BOX.X - self.width)*0.5
         y = (BOX.Y + self.height)*0.5
         self.draw(x, y, color)
-    
+
     def draw_center_row(self, y, color=None):
         x = (BOX.X - self.width)*0.5
         self.draw(x, y, color)
+
 
 def drawSentence(sentence, height, x, y, step=1.0):
     glEnable(GL_TEXTURE_2D)
@@ -121,7 +122,8 @@ def drawSentence(sentence, height, x, y, step=1.0):
     glEnd()
     FlatScreen.pop()
     glDisable(GL_TEXTURE_2D)
-    
+
+
 def drawSentence3d(sentence, height, pos, m):
     glEnable(GL_TEXTURE_2D)
     glBindTexture(GL_TEXTURE_2D, MyFont.texture_id)

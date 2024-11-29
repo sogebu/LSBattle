@@ -39,7 +39,7 @@ class Enemy(object):
         self.model = Polygon(os.path.join(IMG_DIR, self.mode.name),
                              func=lambda x,y,z:(x*self.size, y*self.size, z*self.size),
                              color=self.mode.color)
-        
+
         self.resistivity = self.mode.resistivity
         self.repulsion = script.enemy.repulsion
         self.repulsion_player = (script.enemy.repulsion + script.player.repulsion) * 0.5
@@ -59,7 +59,7 @@ class Enemy(object):
         self.flame = Flame(S=script.enemy.flame.life*self.size, v=script.enemy.flame.speed,
                            n=script.enemy.flame.num, m=script.enemy.flame.num*2,
                            color=script.enemy.flame.color, psize=script.enemy.flame.size*self.size)
-        
+
         self.quaternion = Quaternion()
         # Puts time coordinate slightly past behind the PLC of player.
         self.P = PhaseSpace(X, Vector4D(1,0,0,0))
@@ -97,7 +97,7 @@ class Enemy(object):
         self.distance0 = ((self.mode.think.distance0 + random()) * self.size)**2
         self.distance1 = ((self.mode.think.distance1 + random()) * self.size)**2
         self.omega_max = 1.0/self.size
-        
+
         self.X_to_head = None
         self.X_dead = None
         self.last_R = None
@@ -146,7 +146,7 @@ class Enemy(object):
         else:
             nn = abs(self.mode.think.far_n)
             pp = self.mode.think.far_p
-        
+
         n = (self.X_to_head - self.P.X).d
         n.normalize(nn)
         if pp:
@@ -246,10 +246,10 @@ class Enemy(object):
         X1 = self.P.X
         X0 = self.worldline.get_last()
         score += self.hit_check(X1, X0)
-        
+
         state = EnemyState(self.quaternion, self.time, self.hp)
         self.worldline.add(self.P, state)
-        
+
         if self.hp <= 0.0:
             if self.X_dead is None:
                 self.X_dead = self.P.X.copy()
@@ -270,7 +270,7 @@ class Enemy(object):
 
     def draw_hpbar(self, LX, R_i, state0, state1, s):
         hp = (1.0-s)*state0.hp + s*state1.hp
-        
+
         right = Vector3(R_i.right)
         O = LX.d - right*(script.enemy.hpbar.position*self.size)
         dr = right*(script.enemy.hpbar.width*self.scale*self.max_hp**0.1)
@@ -312,15 +312,15 @@ class Enemy(object):
             glEnable(GL_CULL_FACE)
 
             return True
-            
+
         elif self.hp <= 0.0: # enemy is dead...
             if self.flame.draw(self.X_dead, Xp, L, self.L_dead):
                 return True
             else:
                 return False
 
-class Enemies(object):
 
+class Enemies(object):
     def __init__(self, world):
         self.enemies = []
         self.n = 0
@@ -366,5 +366,3 @@ class Enemies(object):
 
     def hit_check(self, X1, X0, collision_radius2, color=None):
         return self.bullets.hit_check(X1, X0, collision_radius2, color=color)
-
-

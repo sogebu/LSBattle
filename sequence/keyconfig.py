@@ -85,7 +85,7 @@ class KeyConfig(object):
                             if 0 <= choice < self.menu_2.RETURN-1:
                                 self.menu_1.choice = self.menu_2.choice
                                 mode = 2
-            
+
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
             if self.menu_1.choice == self.menu_1.RETURN:
                 focus_1 = focus_2 = None

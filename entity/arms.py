@@ -12,7 +12,6 @@ from program import script
 
 
 class Bullet(object):
-    
     def __init__(self, X, U, L, N, S):
         self.X = X.copy()
         self.U = U.get_lis_glsl()
@@ -21,7 +20,7 @@ class Bullet(object):
         self.S = S
         self.hit = False
         self.color = None
-        
+
     def get_position(self, Xp):
         dX = self.X - Xp
         s = - dX.squared_norm() / (2.0 * self.N.inner_product(dX))
@@ -37,7 +36,7 @@ class Bullet(object):
                 return True
             else:
                 return False
-    
+
     def draw(self, Xp, L, flame, vertex, U):
         s = self.get_position(Xp)
         if 0.0 < s < self.S:
@@ -53,8 +52,8 @@ class Bullet(object):
         else:
             return True
 
+
 class SlowBullet(object):
-    
     def __init__(self, X, N, S, id):
         self.X = X.copy()
         self.N = N.copy()
@@ -63,7 +62,7 @@ class SlowBullet(object):
         self.id = id
         self.hit = False
         self.color = None
-        
+
     def get_position(self, Xp):
         dX = Xp - self.X
         b = self.N.inner_product(dX)
@@ -84,7 +83,7 @@ class SlowBullet(object):
                 return True
             else:
                 return False
-    
+
     def draw(self, Xp, L, flame, vertex, U):
         s = self.get_position(Xp)
         if 0.0 < s < self.S:
@@ -100,14 +99,13 @@ class SlowBullet(object):
         else:
             return True
 
-class _BaseBullets(object):
 
+class _BaseBullets(object):
     def __iter__(self):
         return iter(self.bullets)
 
 
 class Bullets(_BaseBullets):
-
     def __init__(self, world, color=(0.9, 0.1, 0.1, 0.8), psize=0.02):
         self.world = world
         self.bullets = []
@@ -148,8 +146,8 @@ class Bullets(_BaseBullets):
             if vertices:
                 self.model.draw(Xp, L, vertices=vertices, U=U)
 
-class SlowBullets(_BaseBullets):
 
+class SlowBullets(_BaseBullets):
     def __init__(self, world, color=(0.9, 0.1, 0.1, 0.8), psize=0.02):
         self.world = world
         self.bullets = []
@@ -186,4 +184,3 @@ class SlowBullets(_BaseBullets):
             self.bullets = bullets
             if X:
                 self.model.draw(Xp, L, X, U)
-

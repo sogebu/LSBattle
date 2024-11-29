@@ -1,8 +1,8 @@
 #coding: utf8
 from program import script
 
-class GameScore(object):
 
+class GameScore(object):
     def __init__(self, world, stage):
         self.stage  = stage
         self.p_time = world.player.time
@@ -15,13 +15,13 @@ class GameScore(object):
                 if bullet.hit:
                     self.bullet_hit += 1
         self.accuracy = (self.bullet_hit+1)*1.0/(self.bullet_shoot+1)
-    
+
     def get_score_list(self):
         s = self.stage**script.game.score.stage_power
         return [int(s*script.game.score.clear_time * (self.p_time+script.game.score.clear_time_geta)**script.game.score.clear_time_power),
                 int(s*script.game.score.hp * (self.hp*1.0/script.player.hp)**script.game.score.hp_power),
                 int(s*script.game.score.accuracy * self.accuracy**script.game.score.accuracy_power)]
-        
+
     def get_total_score(self, lis=None):
         if lis is None:
             return sum(self.get_score_list())

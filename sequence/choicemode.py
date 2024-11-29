@@ -9,7 +9,6 @@ from sequence.locals import MenuItems, backimage
 
 
 class ChoiceMode(object):
-
     EASY   = 0
     NORMAL = 1
     HARD   = 2
@@ -65,7 +64,7 @@ class ChoiceMode(object):
                                   2:"HARD",
                                   3:"TRAVEL"}[choice])
                 return choice
-                    
+
             backimage.draw()
             self.menu.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)

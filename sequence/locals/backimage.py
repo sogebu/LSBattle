@@ -51,7 +51,7 @@ class BackImage(object):
 
     def _draw_only_clear(self, a=True):
         glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT)
-    
+
     def _draw_image(self, a=True):
         glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT)
         r, g, b, aa = self.color

@@ -157,7 +157,7 @@ cdef class Vector4D(object):
 
     def __repr__(Vector4D self):
         return "Vector4D(%f, %f, %f, %f)"%(self._t, self._x, self._y, self._z)
-    
+
     cpdef double length(self):
         return sqrt(self._x*self._x + self._y*self._y + self._z*self._z)
 
@@ -174,7 +174,7 @@ cdef class Vector4D(object):
         y = self._y - othr._y
         z = self._z - othr._z
         return sqrt(x*x + y*y + z*z)
-        
+
     def distance_to_squared(self, Vector4D othr):
         """
         othr: Vector4D
@@ -213,7 +213,7 @@ cdef class Vector4D(object):
         length: the length of the returning Vector3.
         -> Vector3
 
-        Normalizes the spatial component of self to "length". 
+        Normalizes the spatial component of self to "length".
         if length of self vector is 0, return Vector3(length, 0, 0)
         """
         cdef double r = self._x*self._x + self._y*self._y + self._z*self._z
@@ -241,7 +241,7 @@ cdef class Vector4D(object):
         length: the length of the returning spatial component of Vector4D.
         -> Vector4D
 
-        Normalizes the spatial component of self to "length". 
+        Normalizes the spatial component of self to "length".
         """
         cdef double  r = self._x*self._x + self._y*self._y + self._z*self._z
         if r > 0.0:

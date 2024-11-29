@@ -12,7 +12,6 @@ from program import script
 
 
 class _Box(object):
-    
     def __init__(self):
         """
         Load setting file from CONFIG_DIR/setting.ini
@@ -53,7 +52,7 @@ class _Box(object):
         except:
             self.SAVE = True
             pass
-        
+
     def game_init(self):
         if not sdl2.SDL_WasInit(sdl2.SDL_INIT_EVENTS) and self.window is None:
             sdl2.ext.init()
@@ -78,7 +77,7 @@ class _Box(object):
                 sdl2.ext.SDL_quit()
                 sys.exit(-1)
             self.context = sdl2.SDL_GL_CreateContext(self.window)
-            
+
             self.opengl_init()
             self.resize()
 
@@ -88,12 +87,12 @@ class _Box(object):
         sdl2.ext.quit()
         self.window = None
         self.context = None
-        
+
     def game_quit(self):
         self.save()
         self.sdl2_quit()
         sys.exit(0)
-    
+
     def opengl_init(self):
         """
         setting some OpenGL parameter
@@ -103,7 +102,7 @@ class _Box(object):
         glEnable(GL_CULL_FACE)
         glShadeModel(GL_SMOOTH)
         glPixelStorei(GL_PACK_ALIGNMENT, 4)
-        
+
         # glFogfv(GL_FOG_COLOR, (1.0, 1.0, 1.0, 1.0))
         # glFogi(GL_FOG_MODE, GL_EXP)
         # glFogf(GL_FOG_START, 2)
@@ -135,7 +134,7 @@ class _Box(object):
         gluPerspective(VIEW_ANGLE, self.X*1.0/self.Y, script.ui.near_clip*scale, script.ui.far_clip*scale)
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
-        
+
         self.far_clip = script.ui.far_clip*scale
 
     def set_displaysize(self, i):
@@ -152,10 +151,11 @@ class _Box(object):
             self.SAVE = True
             self.sdl2_quit()
             self.game_init()
+
     def set_mode(self, mode):
         self.MODE = mode
         self.SAVE = True
-        
+
     def save(self):
         if self.SAVE:
             try:
@@ -170,5 +170,6 @@ class _Box(object):
                 f.close()
             except:
                 pass
+
 
 BOX = _Box()

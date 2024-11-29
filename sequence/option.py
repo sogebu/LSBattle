@@ -11,13 +11,12 @@ from sequence.setdisplaysize import SetDisplaySize
 
 
 class Option(object):
-
     def __init__(self):
         self.texts = ["Key Config",
                       "Display Size"]
         self.goto = [KeyConfig(),
                      SetDisplaySize()]
-                     
+
     def init(self):
         self.menu = MenuItems(self.texts, BOX.Y/10, ret=True, title="Option")
 
@@ -56,7 +55,7 @@ class Option(object):
                     self.goto[choice].mainloop()
                     self.init()
                     #self.menu.choice = self.menu.RETURN
-                    
+
             backimage.draw()
             self.menu.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)

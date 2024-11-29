@@ -5,14 +5,13 @@ from . import mqo_loader
 
 
 class Point(object):
-    
     def __init__(self, vertex, texcoord=None):
         self.vertex = vertex
         self.texcoord = texcoord
-    
+
     def __eq__(self, othr):
         return (self.vertex == othr.vertex and self.texcoord == othr.texcoord)
-    
+
     def __str__(self):
         s = "p %f %f %f "%tuple(self.vertex)
         if self.texcoord is not None:
@@ -20,13 +19,13 @@ class Point(object):
         else:
             s += "0 0"
         return s
-            
-class Material(object):
 
+
+class Material(object):
     def __init__(self, m):
         self.color = m.color
         self.tex_name = m.tex_name
-    
+
     def __str__(self):
         s = "m " + " ".join([str(c)for c in self.color])
         s += " \"" + self.tex_name + "\""
@@ -41,10 +40,10 @@ def output(name, points, objects):
         of.write(str(material) + "\n")
         of.write("i " + " ".join([str(i)for i in indices]) + "\n")
     of.close()
-    
+
 def mqo2gpo(name):
     mqo = mqo_loader.MqoObject(open(name))
-    
+
     def _uv(i):
         index = face.indices[i]
         p = Point(mqo.obj.vertex[index], face.uv[i*2:i*2+2])
@@ -65,7 +64,7 @@ def mqo2gpo(name):
         if points[index] is None:
             points[index] = p
         return index
-    
+
     pre_len = len(mqo.obj.vertex)
     points = [None]*pre_len
     objects = []
@@ -86,7 +85,7 @@ def mqo2gpo(name):
                 l = [_uv(i) for i in (0,1,2,3)]
                 l = [l[i] for i in (0,1,2,0,2,3)]
         indices.extend(l)
-    
+
     pmap = [0]*len(points)
     index = 0
     for i, p in enumerate(points):

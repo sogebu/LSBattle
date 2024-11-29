@@ -16,7 +16,6 @@ from program.const import *
 
 
 class World(object):
-
     def __init__(self, level, scale, playerstate, item=None):
         self.level = level
         self.scale = scale
@@ -100,7 +99,7 @@ class World(object):
         self.enemies.draw(Xp, L, LL, self.worldline_ref)
         if self.item is not None:
             self.item.draw(Xp, L, LL)
-        
+
         for gun in self.player.guns:
             gun.bullets.draw(Xp, L)
         self.enemies.bullets.draw(Xp, L)

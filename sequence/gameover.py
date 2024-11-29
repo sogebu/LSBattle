@@ -9,7 +9,6 @@ from sequence.locals import MenuItems
 
 
 class GameOver(object):
-    
     def __init__(self):
         self.text = ["Game Over"]
         self.text2 = ["Game Clear!!"]

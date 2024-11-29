@@ -32,7 +32,7 @@ class Play(object):
         self.gun_message = Sentence("Got New Gun!", BOX.Y/8)
         self.move_message = Sentence("Move,move!!", BOX.Y/5)
         self.keys = Keys()
-        
+
         self.world.action(self.keys, 0.01)
         self.world.draw(self.keys)
         sdl2.SDL_GL_SwapWindow(BOX.window)
@@ -48,8 +48,8 @@ class Play(object):
         last_tick = sdl2.SDL_GetTicks()
         last_move = self.world.player.time
         shoot = False
+
         while True:
-            
             ret = False
             for event in sdl2.ext.get_events():
                 if event.type == sdl2.SDL_QUIT:
@@ -130,7 +130,7 @@ class Play(object):
                     elif key == self.keys.shoot:         shoot = False
 
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
-            
+
             tick = sdl2.SDL_GetTicks()
             dt = tick - last_tick
             if dt == 0:
@@ -139,7 +139,7 @@ class Play(object):
             last_tick = tick
             fps.add(ds)
             total_time += ds
-            
+
             if shoot:
                 self.keys.k_bullet += dt
             else:
@@ -192,7 +192,7 @@ class Play(object):
                     fill_screen(0.0, 0.0, 0.0, 1.0-a/2.0)
             else:
                 lose_time = 0
-            
+
             if self.keys.k_map == 1:
                 GL.glColor(0.3, 0.6, 0.3, 1.0)
                 text = "Score %i\n"%self.world.score

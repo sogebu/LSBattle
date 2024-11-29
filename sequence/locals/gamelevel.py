@@ -7,8 +7,8 @@ NORMAL = 1
 HARD   = 2
 TRAVEL = 3
 
+
 class GameLevel(object):
-    
     def __init__(self, stage, mode):
         self.stage = stage
         self.mode = mode
@@ -26,7 +26,7 @@ class GameLevel(object):
             "brake": {EASY:False, NORMAL: False, HARD:True, TRAVEL:True},
             "toggle_HUD": {EASY:False, NORMAL: True, HARD:True, TRAVEL:True},
         }
-        
+
     def enabled(self, key):
         if key in self.table:
             return self.table[key][self.mode]
@@ -41,4 +41,3 @@ class GameLevel(object):
         return HARD == self.mode
     def is_travel(self):
         return TRAVEL == self.mode
-

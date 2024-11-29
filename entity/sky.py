@@ -13,7 +13,6 @@ from program import script
 
 
 class Sky(object):
-    
     def __init__(self):
         self.init_vertex()
         self.init_program()
@@ -115,7 +114,7 @@ class Sky(object):
         self.mat_local = glGetUniformLocation(self.program, "lorentz")
         self.tex0_local = glGetUniformLocation(self.program, "texture0")
         # self.tex1_local = glGetUniformLocation(self.program, "texture1")
-    
+
     def draw(self, pm, L):
         m = self.m * L * pm
         glUseProgram(self.program)

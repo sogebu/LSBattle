@@ -2,8 +2,8 @@
 import operator
 import re
 
-class Face(object):
 
+class Face(object):
     __slots__ = ("n", "indices", "material", "uv", "h")
 
     def __init__(self, n=0, indices=None, material=None, uv=None, color=None):
@@ -193,7 +193,7 @@ class MqoObject(object):
             pass
         if not materials:
             raise IOError("Material-Chunk is essential")
-            
+
         self.materials = []
         mmap = [0]*len(materials)
         for i, m in enumerate(materials):
@@ -205,7 +205,7 @@ class MqoObject(object):
             mmap[i] = index
         self.obj.check_material_uv(self.materials, mmap)
         self.obj.normalize()
-        
+
         def key(face):
             if face.uv is None:
                 s = 1000000

@@ -15,14 +15,15 @@ class ShowScore(object):
         text1 = [""] + text1 + ["", ""]
         text2 = [""] + text2 + ["", "Press Enter for Next, Esc for Title"]
         text3 = [""] + text3 + ["", ""]
-        
+
         self.menu_1 = MenuItems(text1, BOX.Y/15, 0.2, colum=M.LEFT_LEFT,
-                      title="Stage %i clear bonus"%score.stage)
-        self.menu_2 = MenuItems(text2, BOX.Y/15, 0.2, colum=M.RIGHT_RIGHT, ofx=-BOX.X/3)
+                                title="Stage %i clear bonus"%score.stage)
+        self.menu_2 = MenuItems(text2, BOX.Y/15, 0.2, colum=M.RIGHT_RIGHT,
+                                ofx=-BOX.X/3)
         self.menu_3 = MenuItems(text3, BOX.Y/15, 0.2, colum=M.RIGHT_RIGHT)
-        
+
         self.menu_1.choice = -1
-        
+
         self.menu_2.repos_colum(-1, M.CENTER, BOX.X/3)
         self.menu_2.choice = self.menu_2.n - 1
 
@@ -55,5 +56,3 @@ class ShowScore(object):
             self.menu_3.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)
             sdl2.SDL_Delay(10)
-            
-            

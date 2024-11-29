@@ -21,13 +21,12 @@ from program import script
 
 
 class Game(object):
-    
     def __init__(self):
         BOX.game_init()
         BOX.resize(script.game.scale)
         backimage.load()
         MyFont.init_font(script.ui.font.name)
-        
+
     def mainloop(self):
         title = Title()
         option = Option()
@@ -53,11 +52,11 @@ class Game(object):
                 top = False
             elif flg == title.QUIT:
                 BOX.game_quit()
-    
+
     def howto_loop(self, mode):
         howto = Howto(GameLevel(1, mode))
         howto.mainloop()
-        
+
     def travel_loop(self, mode):
         loading = Loading()
         sdl2.SDL_ShowCursor(0)
@@ -67,12 +66,12 @@ class Game(object):
         travel = Travel(GameLevel(1, mode), script.game.scale, playerstate)
         travel.mainloop()
         sdl2.SDL_ShowCursor(1)
-    
+
     def play_loop(self, mode):
         loading = Loading()
         continue_q = ContineQuestion()
         gameover = GameOver()
-        
+
         stage = 1
         total_score = 0
         playerstate = PlayerState()
@@ -111,9 +110,9 @@ class Game(object):
                     hs = EntryHighScore(total_score)
                     hs.mainloop()
                     break
-                    
+
                 stage += 1
-                
+
                 if item is not None and item < playerstate.gun_num:
                     item = None
 
@@ -132,6 +131,6 @@ class Game(object):
 
             elif flg == play.ELSE:
                 break
-                
+
             else:
                 raise

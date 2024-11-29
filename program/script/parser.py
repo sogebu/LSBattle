@@ -6,7 +6,6 @@ from .common import Block
 
 
 class Parser(object):
-    
     def __init__(self):
         self.re_block = re.compile(r"^(\w+)\s*{$")
         self.re_member = re.compile(r"^(\w+)\s*=\s*(.+)")
@@ -37,7 +36,7 @@ class Parser(object):
                 self.read_block(self.setting[name])
             else:
                 self.skip_block()
-    
+
     def perse_oneline_block(self, block, line):
         m = self.re_block.match(line)
         if m is None:
@@ -54,7 +53,7 @@ class Parser(object):
         else:
             self.skip_block()
         return True
-    
+
     def perse_oneline_member(self, block, line):
         m = self.re_member.match(line)
         if m is None:
@@ -81,7 +80,7 @@ class Parser(object):
             is_block = self.perse_oneline_block(block, line)
             if not is_block:
                 self.perse_oneline_member(block, line)
-    
+
     def read_list_block(self, block, name):
         block[name] = []
         obj_class = block["_"+name+"_obj"]

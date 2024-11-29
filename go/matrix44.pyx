@@ -141,7 +141,7 @@ cdef class Matrix44(object):
         self: Matrix44
         rhs: Matrix44
         -> self*rhs
-        
+
         This routine overwrites self by the result of self*rhs.
         This differs from the original McGugan's notation
         that does it with rhs*self (in Mathematical language).
@@ -151,7 +151,7 @@ cdef class Matrix44(object):
         m01 = self.m00*rhs.m01 + self.m01*rhs.m11 + self.m02*rhs.m21 + self.m03*rhs.m31
         m02 = self.m00*rhs.m02 + self.m01*rhs.m12 + self.m02*rhs.m22 + self.m03*rhs.m32
         m03 = self.m00*rhs.m03 + self.m01*rhs.m13 + self.m02*rhs.m23 + self.m03*rhs.m33
-        
+
         m10 = self.m10*rhs.m00 + self.m11*rhs.m10 + self.m12*rhs.m20 + self.m13*rhs.m30
         m11 = self.m10*rhs.m01 + self.m11*rhs.m11 + self.m12*rhs.m21 + self.m13*rhs.m31
         m12 = self.m10*rhs.m02 + self.m11*rhs.m12 + self.m12*rhs.m22 + self.m13*rhs.m32
@@ -166,7 +166,7 @@ cdef class Matrix44(object):
         m31 = self.m30*rhs.m01 + self.m31*rhs.m11 + self.m32*rhs.m21 + self.m33*rhs.m31
         m32 = self.m30*rhs.m02 + self.m31*rhs.m12 + self.m32*rhs.m22 + self.m33*rhs.m32
         m33 = self.m30*rhs.m03 + self.m31*rhs.m13 + self.m32*rhs.m23 + self.m33*rhs.m33
-        
+
         self.m00 = m00; self.m01 = m01; self.m02 = m02; self.m03 = m03
         self.m10 = m10; self.m11 = m11; self.m12 = m12; self.m13 = m13
         self.m20 = m20; self.m21 = m21; self.m22 = m22; self.m23 = m23
@@ -213,7 +213,7 @@ cdef class Matrix44(object):
         """
         cdef double x, y, z, xx, yy, zz
         x, y, z = v
-        
+
         xx = self.m11*x + self.m12*y + self.m13*z
         yy = self.m21*x + self.m22*y + self.m23*z
         zz = self.m31*x + self.m32*y + self.m33*z
@@ -226,11 +226,11 @@ cdef class Matrix44(object):
         -> Vector3
 
         Let M be the 3D rotation part of self.
-        This routine returns M*v.        
+        This routine returns M*v.
         """
         cdef double x, y, z, xx, yy, zz
         x, y, z = v
-        
+
         xx = self.m11*x + self.m12*y + self.m13*z
         yy = self.m21*x + self.m22*y + self.m23*z
         zz = self.m31*x + self.m32*y + self.m33*z
@@ -240,7 +240,7 @@ cdef class Matrix44(object):
         """
         self: Matrix44
         v: Vector4D
-        
+
         This routine overwrites v by self*v.
         """
         cdef double t, x, y, z
@@ -248,7 +248,7 @@ cdef class Matrix44(object):
         x = v._x
         y = v._y
         z = v._z
-        
+
         v._t = self.m00*t + self.m01*x + self.m02*y + self.m03*z
         v._x = self.m10*t + self.m11*x + self.m12*y + self.m13*z
         v._y = self.m20*t + self.m21*x + self.m22*y + self.m23*z
@@ -258,7 +258,7 @@ cdef class Matrix44(object):
     cpdef Vector4D get_transform(self, v):
         cdef double t, x, y, z, tt, xx, yy, zz
         t, x, y, z = v
-        
+
         tt = self.m00*t + self.m01*x + self.m02*y + self.m03*z
         xx = self.m10*t + self.m11*x + self.m12*y + self.m13*z
         yy = self.m20*t + self.m21*x + self.m22*y + self.m23*z
@@ -286,7 +286,7 @@ cdef class Matrix44(object):
                 self.m21, self.m22, self.m23, 0.0,
                 self.m31, self.m32, self.m33, 0.0,
                 0.0,           0.0,      0.0, 1.0]
-    
+
     def to_glsl(self):
         """
         self: Matrix44
@@ -295,12 +295,12 @@ cdef class Matrix44(object):
         This routine converts self
         into the GLSL format.
         (Note that the transposition is done properly.)
-        
         """
         return [self.m11, self.m21, self.m31, self.m01,
                 self.m12, self.m22, self.m32, self.m02,
                 self.m13, self.m23, self.m33, self.m03,
                 self.m10, self.m20, self.m30, self.m00]
+
     def get_gamma(self):
         return self.m00
 

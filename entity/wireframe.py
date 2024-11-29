@@ -84,7 +84,7 @@ class WireFrame(object):
         self.Xp_local  = glGetUniformLocation(self.program_id, "Xp")
         self.Xo_local  = glGetUniformLocation(self.program_id, "Xo")
         self.mat_local  = glGetUniformLocation(self.program_id, "lorentz")
-    
+
     def draw(self, Xp, L, color=None):
         glLineWidth(script.world.wireframe.line_width)
         glUseProgram(self.program_id)
@@ -104,6 +104,3 @@ class WireFrame(object):
         glDrawElements(GL_LINES, self.n, GL_UNSIGNED_INT, self.indices)
         glUseProgram(0)
         glLineWidth(1)
-
-
-

@@ -11,7 +11,6 @@ from sequence.locals import MenuItems, backimage
 
 
 class SetDisplaySize(object):
-    
     def init(self):
         self.texts = ["%i * %i"%size for size in disp_sizes]
         if not BOX.FULL_SCREEN:
@@ -56,7 +55,7 @@ class SetDisplaySize(object):
                 MyFont.init_font(script.ui.font.name)
                 self.init()
                 return
-            
+
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
             self.menu.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)

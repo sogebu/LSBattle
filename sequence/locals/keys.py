@@ -44,7 +44,7 @@ class Keys(object):
         self.shoot         = sdl2.SDLK_SPACE
         self.change_gun    = sdl2.SDLK_v
         self.toggle_HUD    = sdl2.SDLK_TAB
-        self.names = ["accel_forward", 
+        self.names = ["accel_forward",
                       "accel_back",
                       "accel_right",
                       "accel_left",

@@ -16,7 +16,6 @@ from sequence.stopmenu import StopMenu
 
 
 class Travel(object):
-    
     def __init__(self, level, scale, playerstate):
         BOX.resize(scale)
         self.stopmenu = StopMenu()
@@ -26,7 +25,7 @@ class Travel(object):
     def init(self):
         self.start_message = Sentence(self.level.stage_name, BOX.Y/10)
         self.keys = Keys()
-        
+
         self.world.action(self.keys, 0.01)
         self.world.draw(self.keys)
         sdl2.SDL_GL_SwapWindow(BOX.window)
@@ -39,7 +38,6 @@ class Travel(object):
         last_tick = sdl2.SDL_GetTicks()
         shoot = False
         while True:
-            
             ret = False
             for event in sdl2.ext.get_events():
                 if event.type == sdl2.SDL_QUIT:
@@ -108,14 +106,19 @@ class Travel(object):
                             self.keys.k_accel -= 8
                     elif key == self.keys.brake:
                         self.keys.k_brake = 0
-                    elif key == self.keys.turn_right:    self.keys.k_turn_right = False
-                    elif key == self.keys.turn_left:     self.keys.k_turn_left  = False
-                    elif key == self.keys.turn_up:       self.keys.k_turn_up    = False
-                    elif key == self.keys.turn_down:     self.keys.k_turn_down  = False
-                    elif key == self.keys.shoot:         shoot = False
+                    elif key == self.keys.turn_right:
+                        self.keys.k_turn_right = False
+                    elif key == self.keys.turn_left:
+                        self.keys.k_turn_left  = False
+                    elif key == self.keys.turn_up:
+                        self.keys.k_turn_up    = False
+                    elif key == self.keys.turn_down:
+                        self.keys.k_turn_down  = False
+                    elif key == self.keys.shoot:
+                        shoot = False
 
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
-            
+
             tick = sdl2.SDL_GetTicks()
             dt = tick - last_tick
             if dt == 0:

@@ -89,13 +89,13 @@ _args[2] = _arg2
 _args[3] = _arg3
 _args[4] = _arg4
 
+
 cdef class Quaternion(object):
-    
     cdef double _t, _x, _y, _z
 
     def __init__(self, *args):
        _args[len(args)](self, args)
-    
+
     cpdef Quaternion from_floats(self, double t, double x, double y, double z):
         cdef Quaternion v = Quaternion.__new__(Quaternion)
         v._t = t
@@ -103,7 +103,7 @@ cdef class Quaternion(object):
         v._y = y
         v._z = z
         return v
-        
+
     @classmethod
     def from_ax(cls, double theta, ax):
         cdef double c, s, x, y, z

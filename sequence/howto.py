@@ -9,7 +9,6 @@ from sequence.locals import Keys, MenuItems, M
 
 
 class Howto(object):
-
     def __init__(self, level):
         self.keys = Keys()
         self.keys.load_map()
@@ -32,7 +31,6 @@ class Howto(object):
 
     def mainloop(self):
         while True:
-
             for event in sdl2.ext.get_events():
                 if event.type == sdl2.SDL_QUIT:
                     BOX.game_quit()
@@ -40,7 +38,7 @@ class Howto(object):
                     return
                 elif event.type == sdl2.SDL_MOUSEBUTTONDOWN:
                     return
-            
+
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
             self.menu_1.draw()
             self.menu_2.draw()

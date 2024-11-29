@@ -45,13 +45,13 @@ class ContineQuestion(object):
                     if mouse.button == 1:
                         choice = self.menu.mouse_check(mouse.x, mouse.y)
                         break
-            
+
             if choice == self.YES:
                 self.n += 1
                 return self.YES
             elif choice == self.NO:
                 return self.NO
-                
+
             GL.glClear(GL.GL_DEPTH_BUFFER_BIT|GL.GL_COLOR_BUFFER_BIT)
             self.menu.draw()
             sdl2.SDL_GL_SwapWindow(BOX.window)

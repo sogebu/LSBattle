@@ -51,5 +51,5 @@ def compile_program(vertex_source, fragment_source, cache=True):
         del _compiled_program[deleted_key]
     _compiled_program[key] = program_info
     _using_program_id[program_id] = program_info
-    
+
     return program_id
