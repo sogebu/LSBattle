@@ -24,8 +24,8 @@ class EnemyState(object):
         self.time = time
         self.hp = hp if hp > 0.0 else 0.0
 
-class Enemy(object):
 
+class Enemy(object):
     def __init__(self, world, X, number, typ=None, level=None):
         self.world = world
         self.scale = world.scale
@@ -307,17 +307,16 @@ class Enemy(object):
             LX = L.get_transform(X-Xp)
             R_i = R.get_inverse_rot()
             glDisable(GL_CULL_FACE)
-            if script.enemy.timer.visible: self.draw_timer(LX, R, R_i, state0, state1, s)
-            if script.enemy.hpbar.visible: self.draw_hpbar(LX, R_i, state0, state1, s)
+            if script.enemy.timer.visible:
+                self.draw_timer(LX, R, R_i, state0, state1, s)
+            if script.enemy.hpbar.visible:
+                self.draw_hpbar(LX, R_i, state0, state1, s)
             glEnable(GL_CULL_FACE)
 
             return True
 
-        elif self.hp <= 0.0: # enemy is dead...
-            if self.flame.draw(self.X_dead, Xp, L, self.L_dead):
-                return True
-            else:
-                return False
+        if self.hp <= 0.0: # enemy is dead...
+            return self.flame.draw(self.X_dead, Xp, L, self.L_dead)
 
 
 class Enemies(object):
