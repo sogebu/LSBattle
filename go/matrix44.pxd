@@ -1,6 +1,6 @@
 # coding: utf8
 # go/matrix44.pxd
-from vector4D cimport Vector4D
+from go.vector4D cimport Vector4D
 
 
 cdef class Matrix44(object):

@@ -4,7 +4,7 @@
 cimport cython
 from libc.math cimport sqrt
 
-from vector3 cimport Vector3, vec3_from_floats
+from go.vector3 cimport Vector3, vec3_from_floats
 
 
 cdef void _arg0(Vector3 self, args):
@@ -30,7 +30,6 @@ _args[2] = NULL
 _args[3] = _arg3
 
 cdef class Vector3(object):
-    
     def __init__(self, *args):
         _args[len(args)](self, args)
 

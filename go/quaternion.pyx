@@ -5,7 +5,7 @@ cimport cython
 from libc.math cimport cos, sin, sqrt, acos
 DEF pi = 3.141592653589793115997963468544185161590576171875
 
-from matrix44 cimport Matrix44
+from go.matrix44 cimport Matrix44
 
 
 cdef void _arg0(Quaternion self, args):

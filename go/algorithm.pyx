@@ -4,8 +4,8 @@
 cimport cython
 from libc.math cimport sqrt
 
-from vector4D cimport Vector4D
-from matrix44 cimport Matrix44, Lorentz
+from go.vector4D cimport Vector4D
+from go.matrix44 cimport Matrix44, Lorentz
 
 
 @cython.cdivision(True)

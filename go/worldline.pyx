@@ -4,7 +4,7 @@
 cimport cython
 from libc.math cimport sqrt
 
-from vector4D cimport Vector4D
+from go.vector4D cimport Vector4D
 
 
 cdef class Cache(object):
