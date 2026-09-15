@@ -532,7 +532,7 @@ Scene {
 	}
 }
 Material 1 {
-	"mat1" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.000) spc(0.000) power(5.00) tex("C:\Users\Daiju\Dropbox\kiclab\python\sogebu\buturi\img\cube\check.png")
+	"mat1" shader(3) col(1.000 1.000 1.000 1.000) dif(0.800) amb(0.600) emi(0.000) spc(0.000) power(5.00) tex("check.png")
 }
 Object "obj1" {
 	depth 0
