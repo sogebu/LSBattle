@@ -35,7 +35,7 @@ class Title(object):
         self.title_message = Sentence(self.message, BOX.Y/12)
         # self.menu = MenuItems(self.texts, BOX.Y/12, 0.4,
         #                       title="GAME TITLE WANTED!", title_hight=BOX.Y/8,
-        #                       title2="thesogebu@googlegroups.com", title2_hight=BOX.Y/20,
+        #                       title2="<contact address>", title2_hight=BOX.Y/20,
         #                       title2_color=(0.8, 0.8, 0.8, 1.0), title_color=(1.0, 1.0, 1.0, 1.0))
         self.menu = MenuItems(self.texts, BOX.Y/12, 0.4,
                               title=GAME_NAME, title_hight=BOX.Y/8,

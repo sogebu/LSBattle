@@ -1,6 +1,8 @@
 # -*- mode: python -*-
 import os, sys
-p = r'C:\Users\Daiju\Dropbox\daiju\LSBattle'
+# spec の置き場所から解決する (= 個人の home path を repo に焼かない)。
+# SPECPATH は PyInstaller が spec 実行時に注入する = spec を置いた dir。
+p = SPECPATH if 'SPECPATH' in globals() else os.path.abspath(os.getcwd())
 a = Analysis(['LSBattle3D.py'],
              pathex=[p],
              hiddenimports=[],
